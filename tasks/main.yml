@@ -1,2 +1,9 @@
 ---
 # tasks file for blank-role
+- name: Configure DNS
+  nmcli:
+    dns4: "{{ item }}"
+    dns4_ignore_auto: yes
+    dns4_search: "{{ domain_search }}"
+  with_items:
+    - "{{ domain_dns_ip }}"
