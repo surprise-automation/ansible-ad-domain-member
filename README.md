@@ -1,31 +1,39 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Sets Linux server as a domain member of a Samba AD domain. This *might* work with a Windows Domain but this is untested.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Requires a functional Domain on your network and accessible by your target.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+| Variable | Example | Explanation |
+| `domain_fqdn` | `ad.example.com` | The FQDN of your domain |
+| `domain_dns_ip` | `[192.168.0.1, 192.168.0.2]` | An array that allows you to configure your ADDC's as your DNS providers - critically important |
+| `domain_search` | `example.com` | This is appended to hostname lookups. Ie. if you ping ad it will ping ad.example.com. This will get configured into your NM, which adds it to resolv.conf |
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+No library dependencies. This will install Samba as you need from repo.
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+1. Clone to `/etc/ansible/roles`
+2. Configure Playbook accordingly
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+```yml
+- hosts: servers
+  roles:
+      - default-playbook
+      - ansible-ad-domain-member
+      - app-deploying-playbooks
+```
 
 License
 -------
@@ -35,4 +43,4 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+i r surprise
