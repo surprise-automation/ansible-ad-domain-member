@@ -1,2 +1,5 @@
 ---
 # vars file for blank-role
+domain_fqdn:
+domain_dns_ip: [192.168.0.1, 192.168.0.2]
+domain_search: 
