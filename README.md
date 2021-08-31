@@ -8,6 +8,8 @@ Requirements
 
 Requires a functional Domain on your network and accessible by your target.
 
+Your network should delegate your DNS and NTP settings via DHCP.
+
 Role Variables
 --------------
 

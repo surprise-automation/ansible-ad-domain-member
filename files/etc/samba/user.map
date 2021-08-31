@@ -1,0 +1,1 @@
+!root = {{ domain_workgroup }}\{{ domain_admin_user }}
