@@ -1,9 +1,27 @@
 ---
 # tasks file for blank-role
-- name: Configure DNS
-  nmcli:
-    dns4: "{{ item }}"
-    dns4_ignore_auto: yes
-    dns4_search: "{{ domain_search }}"
-  with_items:
-    - "{{ domain_dns_ip }}"
+
+- name: Install Samba
+  yum:
+    name: samba
+    state: latest
+    
+- name: Install Samba Common Tools
+  yum:
+    name: samba-common-tools
+    state: latest
+
+- name: Copy /etc/krb5.conf
+  template:
+    src: file/etc/krb5.conf
+    dest: /etc/krb5.conf
+
+- name: Copy /etc/samba/smb.conf
+  template:
+    src: file/etc/smb.conf
+    dest: /etc/samba/smb.conf
+
+- name: Copy /etc/samba/user.map
+  template:
+    src: file/etc/samba/user.map
+    dest: /etc/samba/user.map
